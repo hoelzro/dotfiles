@@ -1,0 +1,17 @@
+-- vim:ft=lua
+
+function dir(object, pattern)
+  local keys = {}
+
+  for k in pairs(object) do
+    if not pattern or string.match(k, pattern) then
+      keys[#keys + 1] = k
+    end
+  end
+
+  table.sort(keys)
+
+  for _, k in ipairs(keys) do
+    print(k)
+  end
+end
