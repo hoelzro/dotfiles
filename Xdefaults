@@ -1,0 +1,6 @@
+! vim:ft=xdefaults
+
+xterm*termName:         xterm-256color
+xterm*Foreground: 	green
+xterm*Background: 	black
+xterm*scrollBar:        false
