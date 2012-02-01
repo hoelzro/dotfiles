@@ -1,0 +1,5 @@
+{
+    hash_separator => ' => ',
+    colored        => 1,
+    use_prototypes => 0,
+}
