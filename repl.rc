@@ -1,0 +1,54 @@
+# vim:ft=perl
+
+use feature 'say';
+use File::Slurp qw(read_file write_file);
+use Data::Printer;
+
+do {
+    no warnings 'qw'; # shut it up about comments in qw(...)
+
+    my @plugins = qw(
+        Colors
+        Completion
+        CompletionDriver::Globals
+        CompletionDriver::INC
+        CompletionDriver::Keywords
+        CompletionDriver::LexEnv
+        CompletionDriver::Methods
+        DataPrinter
+        Editor
+        FancyPrompt
+        Interrupt
+        LexEnv
+        MultiLine::PPI
+        OutputCache
+        ReadLineHistory
+        ShowClass
+        Turtles
+    );
+
+    foreach my $plugin (grep { !/^#/ } @plugins) {
+        my $ok = eval {
+            $_REPL->load_plugin($plugin);
+            1;
+        };
+
+        unless($ok) {
+            say $@;
+        }
+    }
+
+    $_REPL->normal_color('white');
+
+    my @shell_words = qw(fg bg jobs);
+    my $shell_re    = join('|', @shell_words);
+       $shell_re    = qr/^($shell_re)$/;
+
+    $_REPL->add_turtles_matcher($shell_re);
+
+    foreach my $word (@shell_words) {
+        $_REPL->meta->add_method('command_' . $word, sub {
+            die "What do you think this is, a shell?\n";
+        });
+    }
+};
