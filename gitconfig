@@ -1,3 +1,5 @@
+# vim:ft=gitconfig
+
 # Let these be taken from the environment
 [user]
     name  =
