@@ -1,0 +1,30 @@
+# Let these be taken from the environment
+[user]
+    name  =
+    email =
+
+[color]
+    ui = auto
+
+[url "git://github.com/hoelzro/"]
+    insteadOf = hoelzro:
+[url "git@github.com:hoelzro/"]
+    pushInsteadOf = hoelzro:
+
+[url "git://github.com/"]
+    insteadOf = github:
+
+[alias]
+    br    = branch
+    co    = checkout
+    s     = status
+    ss    = show -s
+    comit = commit
+    ff    = merge --ff-only
+    hist  = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
+
+[push]
+    default = upstream
+
+[include]
+    path = .git/local.conf
