@@ -5,8 +5,13 @@
     name  =
     email =
 
+[core]
+    excludesfile = ~/.gitignore
+
 [color]
-    ui = auto
+    interactive = auto
+    status      = auto
+    ui          = auto
 
 [url "git://github.com/hoelzro/"]
     insteadOf = hoelzro:
@@ -24,6 +29,8 @@
     comit = commit
     ff    = merge --ff-only
     hist  = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
+    in    = incoming
+    out   = outgoing
 
 [push]
     default = upstream
