@@ -35,5 +35,8 @@
 [push]
     default = upstream
 
+[rebase]
+    autosquash = true
+
 [include]
     path = .git/local.conf
