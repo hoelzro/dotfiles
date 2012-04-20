@@ -35,6 +35,9 @@
 [push]
     default = upstream
 
+[github]
+    user = hoelzro
+
 [rebase]
     autosquash = true
 
