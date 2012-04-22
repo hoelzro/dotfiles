@@ -1,7 +1,6 @@
 # vim:ft=perl
 
 use feature 'say';
-use File::Slurp qw(read_file write_file);
 use Data::Printer;
 
 do {
@@ -19,6 +18,7 @@ do {
         Editor
         FancyPrompt
         Interrupt
+        LazyLoad
         LexEnv
         MultiLine::PPI
         OutputCache
@@ -50,5 +50,10 @@ do {
         $_REPL->meta->add_method('command_' . $word, sub {
             die "What do you think this is, a shell?\n";
         });
+    }
+
+    if($_REPL->can('lazy_load')) {
+        $_REPL->lazy_load('DateTime');
+        $_REPL->lazy_load('File::Slurp' => qw{read_file write_file});
     }
 };
