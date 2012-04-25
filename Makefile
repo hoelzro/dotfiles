@@ -15,3 +15,15 @@ install:
 	$(RUNNER) install -m644 repl.rc ~/.re.pl/repl.rc
 	$(RUNNER) install -m644 tmux.conf ~/.tmux.conf
 	$(RUNNER) install -m644 Xdefaults ~/.Xdefaults
+	$(RUNNER) cat repos | while read repo install_location ; do \
+	    install_location=$${install_location/\~/$$HOME} ; \
+	    if [[ -e "$$install_location" ]] ; then \
+		( cd $$install_location ; git pull --rebase ) ; \
+	    else \
+		mkdir -p $$(dirname $$install_location) ; \
+		git clone $$repo $$install_location ; \
+	    fi ; \
+	    if [[ -e "$$install_location/Makefile" ]] ; then \
+		$(MAKE) -C $$install_location ; \
+	    fi ; \
+	done
