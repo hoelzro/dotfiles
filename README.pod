@@ -1,0 +1,7 @@
+=head1 My dotfiles
+
+My various configuration files.  This repository contains dotfiles that
+can stand alone; for my more complex configurations, see the repos specified
+in the 'repos' file in this repository.
+
+=cut
