@@ -1,0 +1,4 @@
+hoelzro:awesome-config ~/.config/awesome
+hoelzro:bashrc ~/.bashrc_scripts
+hoelzro:vimfiles ~/.vim
+hoelzro:dzil-config ~/.dzil
