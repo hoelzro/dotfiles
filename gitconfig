@@ -1,5 +1,8 @@
 # vim:ft=gitconfig
 
+[include]
+    path = .git/local.conf
+
 # Let these be taken from the environment
 [user]
     name  =
@@ -40,6 +43,3 @@
 
 [rebase]
     autosquash = true
-
-[include]
-    path = .git/local.conf
