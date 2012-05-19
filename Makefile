@@ -15,6 +15,8 @@ install:
 	$(RUNNER) install -m644 repl.rc ~/.re.pl/repl.rc
 	$(RUNNER) install -m644 tmux.conf ~/.tmux.conf
 	$(RUNNER) install -m644 Xdefaults ~/.Xdefaults
+	$(RUNNER) mkdir -p ~/.config/pms
+	$(RUNNER) install -m644 pmus-rc ~/.config/pms/rc
 	$(RUNNER) cat repos | while read repo install_location ; do \
 	    install_location=$${install_location/\~/$$HOME} ; \
 	    if [[ -e "$$install_location" ]] ; then \
