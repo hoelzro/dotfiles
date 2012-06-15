@@ -5,7 +5,7 @@ RUNNER=
 endif
 
 install:
-	@if [[ ${DRY_RUN} -eq 1 ]]; then echo "Dry run; not actually installing things!"; fi
+	@if [[ "${DRY_RUN}" -eq 1 ]]; then echo "Dry run; not actually installing things!"; fi
 	$(RUNNER) install -m644 dataprinter ~/.dataprinter
 	$(RUNNER) install -m644 gitconfig ~/.gitconfig
 	$(RUNNER) install -m644 inputrc ~/.inputrc
