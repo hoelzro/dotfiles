@@ -1,3 +1,5 @@
+# vim:ft=perl
+
 {
     hash_separator => ' => ',
     colored        => 1,
