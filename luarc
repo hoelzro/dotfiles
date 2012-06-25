@@ -1,5 +1,7 @@
 -- vim:ft=lua
 
+pcall(require, 'luarocks.require')
+
 function dir(object, pattern)
   local keys = {}
 
