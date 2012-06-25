@@ -8,4 +8,5 @@
     class          => {
         inherited => 'all',
     },
+    caller_info => 1,
 }
