@@ -5,4 +5,7 @@
     colored        => 1,
     use_prototypes => 0,
     return_value   => 'void',
+    class          => {
+        inherited => 'all',
+    },
 }
