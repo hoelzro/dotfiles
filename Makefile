@@ -17,6 +17,13 @@ install:
 	$(RUNNER) install -m644 Xdefaults ~/.Xdefaults
 	$(RUNNER) mkdir -p ~/.config/pms
 	$(RUNNER) install -m644 pmus-rc ~/.config/pms/rc
+	$(RUNNER) mkdir -p ~/.git/templates
+	$(RUNNER) if [[ -e /usr/share/git-core/templates ]]; then \
+	    rsync -ar /usr/share/git-core/templates/ ~/.git/templates/ ; \
+	elif [[ -e /usr/local/share/git-core/templates ]]; then \
+	    rsync -ar /usr/local/share/git-core/templates/ ~/.git/templates/ ; \
+	fi
+	$(RUNNER) rsync -ar git-templates/ ~/.git/templates/
 	$(RUNNER) cat repos | while read repo install_location ; do \
 	    install_location=$${install_location/\~/$$HOME} ; \
 	    if [[ -e "$$install_location" ]] ; then \
