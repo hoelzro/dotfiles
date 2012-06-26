@@ -4,28 +4,30 @@ else
 RUNNER=
 endif
 
+INSTALL_DIR=$(HOME)
+
 install:
 	@if [[ "${DRY_RUN}" -eq 1 ]]; then echo "Dry run; not actually installing things!"; fi
-	$(RUNNER) install -m644 dataprinter $(HOME)/.dataprinter
-	$(RUNNER) install -m644 gitconfig $(HOME)/.gitconfig
-	$(RUNNER) install -m644 inputrc $(HOME)/.inputrc
-	$(RUNNER) install -m644 luarc $(HOME)/.luarc
-	$(RUNNER) install -m644 perlcriticrc $(HOME)/.perlcriticrc
-	$(RUNNER) mkdir -p $(HOME)/.re.pl
-	$(RUNNER) install -m644 repl.rc $(HOME)/.re.pl/repl.rc
-	$(RUNNER) install -m644 tmux.conf $(HOME)/.tmux.conf
-	$(RUNNER) install -m644 Xdefaults $(HOME)/.Xdefaults
-	$(RUNNER) mkdir -p $(HOME)/.config/pms
-	$(RUNNER) install -m644 pmus-rc $(HOME)/.config/pms/rc
-	$(RUNNER) mkdir -p $(HOME)/.git/templates
+	$(RUNNER) install -m644 dataprinter $(INSTALL_DIR)/.dataprinter
+	$(RUNNER) install -m644 gitconfig $(INSTALL_DIR)/.gitconfig
+	$(RUNNER) install -m644 inputrc $(INSTALL_DIR)/.inputrc
+	$(RUNNER) install -m644 luarc $(INSTALL_DIR)/.luarc
+	$(RUNNER) install -m644 perlcriticrc $(INSTALL_DIR)/.perlcriticrc
+	$(RUNNER) mkdir -p $(INSTALL_DIR)/.re.pl
+	$(RUNNER) install -m644 repl.rc $(INSTALL_DIR)/.re.pl/repl.rc
+	$(RUNNER) install -m644 tmux.conf $(INSTALL_DIR)/.tmux.conf
+	$(RUNNER) install -m644 Xdefaults $(INSTALL_DIR)/.Xdefaults
+	$(RUNNER) mkdir -p $(INSTALL_DIR)/.config/pms
+	$(RUNNER) install -m644 pmus-rc $(INSTALL_DIR)/.config/pms/rc
+	$(RUNNER) mkdir -p $(INSTALL_DIR)/.git/templates
 	$(RUNNER) if [[ -e /usr/share/git-core/templates ]]; then \
-	    rsync -ar /usr/share/git-core/templates/ $(HOME)/.git/templates/ ; \
+	    rsync -ar /usr/share/git-core/templates/ $(INSTALL_DIR)/.git/templates/ ; \
 	elif [[ -e /usr/local/share/git-core/templates ]]; then \
-	    rsync -ar /usr/local/share/git-core/templates/ $(HOME)/.git/templates/ ; \
+	    rsync -ar /usr/local/share/git-core/templates/ $(INSTALL_DIR)/.git/templates/ ; \
 	fi
-	$(RUNNER) rsync -ar git-templates/ $(HOME)/.git/templates/
+	$(RUNNER) rsync -ar git-templates/ $(INSTALL_DIR)/.git/templates/
 	$(RUNNER) cat repos | while read repo install_location ; do \
-	    install_location=$${install_location/\~/$(HOME)} ; \
+	    install_location=$${install_location/\~/$(INSTALL_DIR)} ; \
 	    if [[ ! -e "$$install_location" ]] ; then \
 		mkdir -p $$(dirname $$install_location) ; \
 		git clone $$repo $$install_location ; \
