@@ -11,6 +11,9 @@
 [core]
     excludesfile = ~/.gitignore
 
+[init]
+    templatedir=~/.git/templates
+
 [color]
     interactive = auto
     status      = auto
