@@ -40,6 +40,6 @@ install:
 bundle:
 	tmpdir=`mktemp -d -t bundle` ; \
 	make install INSTALL_DIR="$$tmpdir" ; \
-	find "$$tmpdir" -name .git -print0 | xargs -0 rm -rf ; \
+	find "$$tmpdir" -name .git -mindepth 2 -print0 | xargs -0 rm -rf ; \
 	( cd "$$tmpdir" ; tar czf - . ) > bundle.tar.gz ; \
 	rm -rf "$$tmpdir"
