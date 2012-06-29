@@ -46,3 +46,6 @@
 
 [rebase]
     autosquash = true
+
+[merge]
+    defaultToUpstream = true
