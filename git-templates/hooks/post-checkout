@@ -62,4 +62,7 @@ my $fork_info = get_fork_info($username, $repo_name);
 
 exit 0 unless $fork_info; # we don't care if this isn't a fork
 
-system 'git', 'remote', 'add', 'base', $fork_info->{'git_url'};
+my $url = $fork_info->{'git_url'};
+$url =~ s{^(git|https)://github[.]com/}{github:};
+
+system 'git', 'remote', 'add', 'base', $url;
