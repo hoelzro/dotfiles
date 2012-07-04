@@ -8,6 +8,7 @@ INSTALL_DIR=$(HOME)
 
 install:
 	@if [[ "${DRY_RUN}" -eq 1 ]]; then echo "Dry run; not actually installing things!"; fi
+	$(RUNNER) install -m644 ackrc $(INSTALL_DIR)/.ackrc
 	$(RUNNER) install -m644 dataprinter $(INSTALL_DIR)/.dataprinter
 	$(RUNNER) install -m644 gitconfig $(INSTALL_DIR)/.gitconfig
 	$(RUNNER) install -m644 inputrc $(INSTALL_DIR)/.inputrc
