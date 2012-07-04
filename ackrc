@@ -1,0 +1,3 @@
+--type-add=perl:ext:pm6
+--type-set=perl6:ext:p6,pm6,pm
+--type-add=perl6:firstlinematch:/perl6/
