@@ -37,6 +37,7 @@
     hist  = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
     in    = incoming
     out   = outgoing
+    psuh  = push
 
 [push]
     default = upstream
