@@ -1,2 +1,4 @@
+set expand-tilde on
+
 C-f: forward-word
 C-b: backward-word
