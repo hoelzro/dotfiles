@@ -2,3 +2,8 @@ set expand-tilde on
 
 C-f: forward-word
 C-b: backward-word
+# XXX how do we fix this? ↓
+#C-j: next-history
+C-k: previous-history
+C-s: unix-filename-rubout
+C-{: complete-into-braces
