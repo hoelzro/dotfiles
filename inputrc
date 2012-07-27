@@ -7,3 +7,10 @@ C-b: backward-word
 C-k: previous-history
 C-s: unix-filename-rubout
 C-{: complete-into-braces
+
+$if term=screen
+ # nothing; the else is the interesting part
+$else
+  C-a: self-insert
+  "\C-a\C-a": beginning-of-line
+$endif
