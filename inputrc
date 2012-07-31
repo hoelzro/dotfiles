@@ -6,7 +6,8 @@ C-b: backward-word
 #C-j: next-history
 C-k: previous-history
 C-s: unix-filename-rubout
-C-{: complete-into-braces
+# XXX this breaks Devel::REPL; fix with conditional construct ↓
+#C-{: complete-into-braces
 
 $if term=screen
  # nothing; the else is the interesting part
