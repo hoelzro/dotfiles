@@ -56,4 +56,10 @@ do {
         $_REPL->lazy_load('DateTime');
         $_REPL->lazy_load('File::Slurp' => qw{read_file write_file});
     }
+
+    if($_REPL->can('dataprinter_config')) {
+        $_REPL->dataprinter_config({
+            caller_info => 0,
+        });
+    }
 };
