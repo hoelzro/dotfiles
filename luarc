@@ -1,5 +1,9 @@
 -- vim:ft=lua
 
+if _G.arg then
+  return -- exit if we're not running the REPL
+end
+
 pcall(require, 'luarocks.require')
 
 function dir(object, pattern)
