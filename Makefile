@@ -20,6 +20,8 @@ install:
 	$(RUNNER) install -m644 Xdefaults $(INSTALL_DIR)/.Xdefaults
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.config/pms
 	$(RUNNER) install -m644 pmus-rc $(INSTALL_DIR)/.config/pms/rc
+	$(RUNNER) mkdir -p $(INSTALL_DIR)/.luarocks
+	$(RUNNER) install -m644 luarocks.lua $(INSTALL_DIR)/.luarocks/config.lua
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.git/templates
 	$(RUNNER) if [[ -e /usr/share/git-core/templates ]]; then \
 	    rsync -ar /usr/share/git-core/templates/ $(INSTALL_DIR)/.git/templates/ ; \
