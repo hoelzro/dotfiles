@@ -6,7 +6,9 @@ endif
 
 INSTALL_DIR=$(HOME)
 
-install:
+install: install_dotfiles install_repos
+
+install_dotfiles:
 	@if [[ "${DRY_RUN}" -eq 1 ]]; then echo "Dry run; not actually installing things!"; fi
 	$(RUNNER) install -m644 ackrc $(INSTALL_DIR)/.ackrc
 	$(RUNNER) install -m644 dataprinter $(INSTALL_DIR)/.dataprinter
@@ -29,6 +31,8 @@ install:
 	    rsync -ar /usr/local/share/git-core/templates/ $(INSTALL_DIR)/.git/templates/ ; \
 	fi
 	$(RUNNER) rsync -ar git-templates/ $(INSTALL_DIR)/.git/templates/
+
+install_repos:
 	$(RUNNER) cat repos | while read repo install_location ; do \
 	    install_location=$${install_location/\~/$(INSTALL_DIR)} ; \
 	    if [[ ! -e "$$install_location" ]] ; then \
