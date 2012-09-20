@@ -5,25 +5,26 @@ RUNNER=
 endif
 
 INSTALL_DIR=$(HOME)
+INSTALLER=install -m644
 
 install: install_dotfiles install_repos
 
 install_dotfiles:
 	@if [[ "${DRY_RUN}" -eq 1 ]]; then echo "Dry run; not actually installing things!"; fi
-	$(RUNNER) install -m644 ackrc $(INSTALL_DIR)/.ackrc
-	$(RUNNER) install -m644 dataprinter $(INSTALL_DIR)/.dataprinter
-	$(RUNNER) install -m644 gitconfig $(INSTALL_DIR)/.gitconfig
-	$(RUNNER) install -m644 inputrc $(INSTALL_DIR)/.inputrc
-	$(RUNNER) install -m644 luarc $(INSTALL_DIR)/.luarc
-	$(RUNNER) install -m644 perlcriticrc $(INSTALL_DIR)/.perlcriticrc
+	$(RUNNER) $(INSTALLER) ackrc $(INSTALL_DIR)/.ackrc
+	$(RUNNER) $(INSTALLER) dataprinter $(INSTALL_DIR)/.dataprinter
+	$(RUNNER) $(INSTALLER) gitconfig $(INSTALL_DIR)/.gitconfig
+	$(RUNNER) $(INSTALLER) inputrc $(INSTALL_DIR)/.inputrc
+	$(RUNNER) $(INSTALLER) luarc $(INSTALL_DIR)/.luarc
+	$(RUNNER) $(INSTALLER) perlcriticrc $(INSTALL_DIR)/.perlcriticrc
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.re.pl
-	$(RUNNER) install -m644 repl.rc $(INSTALL_DIR)/.re.pl/repl.rc
-	$(RUNNER) install -m644 tmux.conf $(INSTALL_DIR)/.tmux.conf
-	$(RUNNER) install -m644 Xdefaults $(INSTALL_DIR)/.Xdefaults
+	$(RUNNER) $(INSTALLER) repl.rc $(INSTALL_DIR)/.re.pl/repl.rc
+	$(RUNNER) $(INSTALLER) tmux.conf $(INSTALL_DIR)/.tmux.conf
+	$(RUNNER) $(INSTALLER) Xdefaults $(INSTALL_DIR)/.Xdefaults
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.config/pms
-	$(RUNNER) install -m644 pmus-rc $(INSTALL_DIR)/.config/pms/rc
+	$(RUNNER) $(INSTALLER) pmus-rc $(INSTALL_DIR)/.config/pms/rc
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.luarocks
-	$(RUNNER) install -m644 luarocks.lua $(INSTALL_DIR)/.luarocks/config.lua
+	$(RUNNER) $(INSTALLER) luarocks.lua $(INSTALL_DIR)/.luarocks/config.lua
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.git/templates
 	$(RUNNER) if [[ -e /usr/share/git-core/templates ]]; then \
 	    rsync -ar /usr/share/git-core/templates/ $(INSTALL_DIR)/.git/templates/ ; \
