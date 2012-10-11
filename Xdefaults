@@ -4,3 +4,9 @@ xterm*termName:         xterm-256color
 xterm*Foreground: 	green
 xterm*Background: 	black
 xterm*scrollBar:        false
+xterm*backarrowKey:     false
+xterm*ttyModes:         erase ^?
+
+xterm*VT100.Translations: \
+        #override <Key>BackSpace: string(0x7f) \n\
+                  <Key>Delete:    string(0x1b) string("[3~")
