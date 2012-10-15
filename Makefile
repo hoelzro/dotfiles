@@ -19,7 +19,7 @@ install_dotfiles:
 	$(RUNNER) $(INSTALLER) perlcriticrc $(INSTALL_DIR)/.perlcriticrc
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.re.pl
 	$(RUNNER) $(INSTALLER) repl.rc $(INSTALL_DIR)/.re.pl/repl.rc
-	$(RUNNER) $(INSTALLER) tmux.conf $(INSTALL_DIR)/.tmux.conf
+	$(RUNNER) perl install-tmux-conf.pl tmux.conf $(INSTALL_DIR)/.tmux.conf
 	$(RUNNER) $(INSTALLER) Xdefaults $(INSTALL_DIR)/.Xdefaults
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.config/pms
 	$(RUNNER) $(INSTALLER) pmus-rc $(INSTALL_DIR)/.config/pms/rc
