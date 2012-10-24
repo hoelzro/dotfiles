@@ -8,5 +8,22 @@
     class          => {
         inherited => 'all',
     },
+    filters => {
+        CODE => sub {
+            my ( $ref, $opts ) = @_;
+
+            unless($opts->{'deparse'}) {
+                my $has_identify = eval {
+                    require Sub::Identify;
+                    1;
+                };
+
+                if($has_identify) {
+                    return 'CODE: ' . Sub::Identify::sub_fullname($ref);
+                }
+            }
+            return;
+        },
+    },
     caller_info => 1,
 }
