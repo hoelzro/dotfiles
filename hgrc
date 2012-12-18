@@ -3,4 +3,8 @@ username = Rob Hoelz <rob@hoelz.ro>
 
 [extensions]
 color  =
+pager  =
 record =
+
+[pager]
+pager = LESS=FRX less
