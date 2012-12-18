@@ -6,6 +6,7 @@ color    =
 histedit =
 pager    =
 record   =
+schemes  =
 
 [pager]
 pager = LESS=FRX less
