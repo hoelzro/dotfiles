@@ -2,9 +2,10 @@
 username = Rob Hoelz <rob@hoelz.ro>
 
 [extensions]
-color  =
-pager  =
-record =
+color    =
+histedit =
+pager    =
+record   =
 
 [pager]
 pager = LESS=FRX less
