@@ -10,7 +10,7 @@ xterm*ttyModes:         erase ^?
 urxvt*background:        black
 urxvt*foreground:        green
 urxvt*scrollBar:         false
-urxvt*urlLauncher:       /home/rob/bin/open-browser
+urxvt*url-launcher:       /home/rob/bin/open-browser
 urxvt*matcher.button:    1
 urxvt*perl-ext-common:   default,matcher,searchable-scrollback
 urxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
