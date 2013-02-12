@@ -1,2 +1,4 @@
 set startuplist=library
 set playmode=random
+bind kpenter play
+bind ? help
