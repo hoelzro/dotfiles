@@ -3,6 +3,7 @@ username = Rob Hoelz <rob@hoelz.ro>
 
 [extensions]
 color    =
+graphlog =
 histedit =
 pager    =
 record   =
