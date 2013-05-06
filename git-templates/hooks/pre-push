@@ -1,0 +1,52 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use autodie;
+
+sub slurp_command {
+    my @command = @_;
+
+    my ( $read, $write );
+
+    pipe $read, $write;
+
+    my $pid = fork();
+
+    if($pid) {
+        close $write;
+        my @lines;
+        while(<$read>) {
+            chomp;
+            push @lines, $_;
+        }
+
+        waitpid $pid, 0;
+
+        return @lines;
+    } else {
+        close $read;
+        open STDOUT, '>&', $write;
+        exec @command;
+    }
+}
+
+while(<STDIN>) {
+    chomp;
+    my ( $local_ref, $local_sha, $remote_ref, $remote_sha ) = split;
+
+    my @commits = slurp_command('git', 'log', '--pretty=format:%s%n',
+            $remote_sha . '..' . $local_sha);
+
+    foreach my $commit (@commits) {
+        if($commit =~ /fixup!/) {
+            print STDERR "Commit '$commit' is a fixup commit\n";
+            exit 1;
+        } elsif($commit =~ /don(?:')?t\s*push/i) {
+            print STDERR "Commit '$commit' says not to push it...\n";
+            exit 1;
+        }
+    }
+
+    next if $local_ref eq 'delete';
+}
