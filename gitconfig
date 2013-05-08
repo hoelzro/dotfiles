@@ -25,10 +25,8 @@
 [url "git@github.com:hoelzro/"]
     pushInsteadOf = hoelzro:
 
-[url "git://bitbucket.org/hoelzro/"]
-    insteadOf = hoelzrobb:
 [url "git@bitbucket.org:hoelzro/"]
-    pushInsteadOf = hoelzrobb:
+    insteadOf = hoelzrobb:
 
 [url "git://github.com/"]
     insteadOf = github:
