@@ -2,3 +2,4 @@
 --type-set=perl6:ext:p6,pm6,pm
 --type-add=perl6:firstlinematch:/perl6/
 --type-add=mason:ext:html,comp
+--ignore-dir=extlib
