@@ -37,16 +37,17 @@
     pushInsteadOf = githubrw:
 
 [alias]
-    br    = branch
-    co    = checkout
-    s     = status
-    ss    = show -s
-    comit = commit
-    ff    = merge --ff-only
-    hist  = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
-    in    = incoming
-    out   = outgoing
-    psuh  = push
+    br       = branch
+    co       = checkout
+    s        = status
+    ss       = show -s
+    comit    = commit
+    ff       = merge --ff-only
+    hist     = log --graph --color = always --pretty = '[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
+    in       = incoming
+    out      = outgoing
+    psuh     = push
+    whatsnew = log ORIG_HEAD..HEAD
 
 [push]
     default = upstream
