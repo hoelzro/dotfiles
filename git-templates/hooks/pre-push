@@ -45,6 +45,9 @@ while(<STDIN>) {
         } elsif($commit =~ /don(?:')?t\s*push/i) {
             print STDERR "Commit '$commit' says not to push it...\n";
             exit 1;
+        } elsif($commit =~ /WIP/) {
+            print STDERR "Commit '$commit' is a work-in-progress\n";
+            exit 1;
         }
     }
 
