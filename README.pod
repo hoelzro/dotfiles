@@ -1,7 +1,30 @@
 =head1 My dotfiles
 
 My various configuration files.  This repository contains dotfiles that
-can stand alone; for my more complex configurations, see the repos specified
-in the 'repos' file in this repository.
+can stand alone; my other config files can be found in other repositories:
+
+=over 4
+
+=item Awesome (L<https://awesome.naquadah.org/>)
+
+L<https://github.com/hoelzro/awesome-config>
+
+=item Bash (this is old; I use zsh now)
+
+L<https://github.com/hoelzro/bashrc>
+
+=item Dist::Zilla (L<http://dzil.org>)
+
+L<https://github.com/hoelzro/dzil-config>
+
+=item Vim
+
+L<https://github.com/hoelzro/vimfiles>
+
+=item Zsh
+
+L<https://github.com/hoelzro/zsh-config>
+
+=back
 
 =cut
