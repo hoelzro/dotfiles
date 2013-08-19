@@ -14,6 +14,7 @@ install_dotfiles:
 	$(RUNNER) $(INSTALLER) ackrc $(INSTALL_DIR)/.ackrc
 	$(RUNNER) $(INSTALLER) dataprinter $(INSTALL_DIR)/.dataprinter
 	$(RUNNER) $(INSTALLER) gitconfig $(INSTALL_DIR)/.gitconfig
+	$(RUNNER) $(INSTALLER) gitattributes $(INSTALL_DIR)/.gitattributes
 	$(RUNNER) $(INSTALLER) inputrc $(INSTALL_DIR)/.inputrc
 	$(RUNNER) $(INSTALLER) luarc $(INSTALL_DIR)/.luarc
 	$(RUNNER) $(INSTALLER) perlcriticrc $(INSTALL_DIR)/.perlcriticrc
