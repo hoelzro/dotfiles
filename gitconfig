@@ -9,8 +9,9 @@
     email =
 
 [core]
-    excludesfile = ~/.gitignore
-    whitespace   = tab-in-indent,trailing-space
+    attributesfile = ~/.gitattributes
+    excludesfile   = ~/.gitignore
+    whitespace     = tab-in-indent,trailing-space
 
 [init]
     templatedir=~/.git/templates
