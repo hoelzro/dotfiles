@@ -15,8 +15,8 @@ urxvt*matcher.button:    1
 urxvt*perl-ext-common:   default,matcher,searchable-scrollback
 urxvt*matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 urxvt.colorUL:           #86a2be
-urxvt*font:              xft:Droid Sans Mono:pixelsize=12:antialias=true:hinting=true
-urxvt*boldFont:          xft:Droid Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
+urxvt*font:              xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
+urxvt*boldFont:          xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
 urxvt*iso14755:          disabled
 urxvt*iso14755_52:       disabled
 
