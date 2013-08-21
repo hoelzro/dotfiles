@@ -44,7 +44,7 @@
     ss       = show -s
     comit    = commit
     ff       = merge --ff-only
-    hist     = log --graph --color = always --pretty = '[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
+    hist     = log --graph --color=always --pretty='[%C(cyan)%h%Creset]%C(bold cyan)%d%Creset %s'
     in       = incoming
     out      = outgoing
     psuh     = push
