@@ -11,3 +11,5 @@ schemes  =
 
 [pager]
 pager = LESS=FRX less
+
+%include ~/.hgrc.d/local.rc
