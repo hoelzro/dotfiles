@@ -29,3 +29,7 @@ verbose = [%p] %f:%l - %m. (%e) (Severity: %s)\n
 [Bangs::ProhibitCommentedOutCode]
 [Bangs::ProhibitFlagComments]
 [Bangs::ProhibitNumberedNames]
+
+# Lax::ProhibitStringyEval::ExceptForRequire handles this
+[-BuiltinFunctions::ProhibitStringyEval]
+[Lax::ProhibitStringyEval::ExceptForRequire]
