@@ -38,6 +38,8 @@ sub is_clone_operation {
     return $previous_ref eq $EMPTY_REF;
 }
 
+$ENV{'LC_MESSAGES'} = 'C';
+
 my $ok = eval {
     require Net::GitHub::V3;
 };
