@@ -1,0 +1,5 @@
+" vim:ft=vim
+
+set hintchars=hjklasdfguiopwertmzxcvb
+set tabnumbers
+source! /home/rob/.vimperatorrc.local
