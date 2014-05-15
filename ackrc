@@ -3,4 +3,5 @@
 --type-add=perl6:firstlinematch:/perl6/
 --type-add=mason:ext:html,comp
 --type-add=qml:ext:qml
+--type-add=xul:ext:xul
 --ignore-dir=extlib
