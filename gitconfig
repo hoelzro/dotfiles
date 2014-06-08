@@ -49,6 +49,7 @@
     out      = outgoing
     psuh     = push
     whatsnew = log ORIG_HEAD..HEAD
+    vdiff    = difftool --tool=vimdiff --no-prompt
 
 [push]
     default = upstream
