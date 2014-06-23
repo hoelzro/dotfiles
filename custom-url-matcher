@@ -1,0 +1,33 @@
+#! perl
+
+# shamlessly ripped from urxvt's matcher script
+my $URL_RE =
+   qr{
+      (?:https?://|\bwww\.)
+      [\w\-\@;\/?:&=%\$.+!*\x27,~#]*
+      (
+         \([\w\-\@;\/?:&=%\$.+!*\x27,~#]*\)| # Allow a pair of matched parentheses
+         [\w\-\@;\/?:&=%\$+*~]  # exclude some trailing characters (heuristic)
+      )+
+   }x;
+
+sub on_button_press {
+    my ( $self, $event ) = @_;
+
+    return unless $event->{'button'} == 1 && $event->{'state'} & urxvt::ControlMask;
+
+    my $buffer    = join('', map { $self->ROW_t($_) } (0 .. $self->nrow - 1));
+    my $click_pos = $event->{'row'} * $self->ncol + $event->{'col'};
+    my $top = $self->top_row;
+    my $bottom = $self->nrow - 1;
+
+    while($buffer =~ /$URL_RE/g) {
+        my ( $start, $end ) = ( $-[0], $+[0] );
+
+        if($start <= $click_pos && $click_pos <= $end) {
+            my $match = substr($buffer, $start, $end - $start);
+            system($ENV{HOME} . '/bin/open-browser', $match);
+            return;
+        }
+    }
+}

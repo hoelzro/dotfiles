@@ -34,6 +34,8 @@ install_dotfiles:
 	    rsync -ar /usr/local/share/git-core/templates/ $(INSTALL_DIR)/.git/templates/ ; \
 	fi
 	$(RUNNER) rsync -ar git-templates/ $(INSTALL_DIR)/.git/templates/
+	$(RUNNER) mkdir -p $(INSTALL_DIR)/.urxvt/ext/
+	$(RUNNER) $(INSTALLER) custom-url-matcher $(INSTALL_DIR)/.urxvt/ext/
 
 install_repos:
 	$(RUNNER) cat repos | while read repo install_location ; do \
