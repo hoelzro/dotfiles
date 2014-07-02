@@ -2,3 +2,139 @@
 
 use strict;
 use warnings;
+
+use Cwd qw(getcwd);
+use File::Spec;
+
+my %HOOK_METADATA = (
+    'applypatch-msg'     => { bail_early => 1 },
+    'pre-applypatch'     => { bail_early => 1 },
+    'pre-commit'         => { bail_early => 1 },
+    'prepare-commit-msg' => { bail_early => 1 },
+    'commit-msg'         => { bail_early => 1 },
+    'pre-rebase'         => { bail_early => 1 },
+    'pre-push'           => { bail_early => 1 },
+    'pre-receive'        => { bail_early => 1 },
+    'update'             => { bail_early => 1 },
+    'pre-auto-gc'        => { bail_early => 1 },
+
+    'post-applypatch'    => { bail_early => 0 },
+    'post-commit'        => { bail_early => 0 },
+    'post-checkout'      => { bail_early => 0 },
+    'post-merge'         => { bail_early => 0 },
+    'post-receive'       => { bail_early => 0 },
+    'post-update'        => { bail_early => 0 },
+    'post-rewrite'       => { bail_early => 0 },
+);
+
+sub hook_cmp {
+    my ( $a, $b ) = @_;
+
+    my ( undef, undef, $filename_a ) = File::Spec->splitpath($a);
+    my ( undef, undef, $filename_b ) = File::Spec->splitpath($b);
+
+    my ( $order_a ) = $filename_a =~ /^(\d+)-/;
+    my ( $order_b ) = $filename_b =~ /^(\d+)-/;
+
+    $order_a = 99 unless defined $order_a;
+    $order_b = 99 unless defined $order_b;
+
+    return $order_a <=> $order_b;
+}
+
+sub collect_hooks {
+    my ( $hook_name ) = @_;
+
+    my $git_dir = $ENV{'GIT_DIR'};
+
+    unless(defined $git_dir) {
+        $git_dir = File::Spec->catdir(getcwd(), '.git');
+    }
+    my @hook_dirs = (
+        File::Spec->catdir($ENV{'HOME'}, '.git', 'hooks', $hook_name),
+        File::Spec->catdir($git_dir, 'hooks.d', $hook_name),
+    );
+
+    my @hooks;
+
+    foreach my $dir (@hook_dirs) {
+        next unless -d $dir;
+        my $dh;
+        opendir($dh, $dir) or die $!;
+        while(my $entry = readdir($dh)) {
+            next if $entry =~ /^[.]{1,2}$/;
+            my $path = File::Spec->catfile($dir, $entry);
+            next unless -x $path;
+
+            push @hooks, $path;
+        }
+        closedir($dh);
+    }
+
+    return sort {
+        hook_cmp($a, $b)
+    } @hooks;
+}
+
+sub run_hook {
+    my ( $script, $stdin, @args ) = @_;
+
+    my ( $read, $write );
+
+    pipe($read, $write) or return 1;
+    my $pid = fork();
+
+    if($pid == -1) {
+        close $read;
+        close $write;
+        return 1;
+    }
+
+    if($pid) {
+        close $read;
+        print {$write} $stdin;
+        close $write;
+        waitpid $pid, 0;
+        return $? >> 8;
+    } else {
+        close $write;
+        open STDIN, '<&', $read;
+
+        exec $script, @args;
+        exit 127;
+    }
+}
+
+my ( undef, undef, $hook_name ) = File::Spec->splitpath($0);
+
+my $metadata = $HOOK_METADATA{$hook_name};
+
+unless($metadata) {
+    die "Unknown hook '$hook_name'\n";
+}
+
+my $last_non_zero_status;
+
+my @hooks = collect_hooks($hook_name);
+
+my $stdin = do {
+    local $/;
+    <STDIN>
+};
+
+foreach my $hook (@hooks) {
+    my $status = run_hook($hook, $stdin, @ARGV);
+
+    if($status != 0) {
+        if($metadata->{'bail_early'}) {
+            exit $status;
+        } else {
+            $last_non_zero_status = $status;
+        }
+    }
+}
+
+exit($last_non_zero_status || 0);
+
+# XXX ENV vars to debug
+# XXX git-hooks manager script?
