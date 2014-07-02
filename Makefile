@@ -39,6 +39,7 @@ install_dotfiles:
 	$(RUNNER) for hook in $(GITHOOKS); do \
 	    $(RUNNER) ln -sf $(INSTALL_DIR)/.git/hook-runner $(INSTALL_DIR)/.git/templates/hooks/$$hook ; \
 	done
+	$(RUNNER) mkdir -p $(INSTALL_DIR)/.git/templates/hooks.d
 	$(RUNNER) rsync -ar git-hooks/ $(INSTALL_DIR)/.git/hooks/
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.urxvt/ext/
 	$(RUNNER) $(INSTALLER) custom-url-matcher $(INSTALL_DIR)/.urxvt/ext/
