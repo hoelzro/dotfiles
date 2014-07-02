@@ -6,6 +6,7 @@ endif
 
 INSTALL_DIR=$(HOME)
 INSTALLER=install -m644
+GITHOOKS=applypatch-msg commit-msg post-checkout post-update pre-applypatch pre-commit pre-push pre-push pre-rebase prepare-commit-msg update
 
 install: install_dotfiles install_repos
 
@@ -33,7 +34,12 @@ install_dotfiles:
 	elif [[ -e /usr/local/share/git-core/templates ]]; then \
 	    rsync -ar /usr/local/share/git-core/templates/ $(INSTALL_DIR)/.git/templates/ ; \
 	fi
-	$(RUNNER) rsync -ar git-templates/ $(INSTALL_DIR)/.git/templates/
+	$(RUNNER) rm -f $(INSTALL_DIR)/.git/templates/hooks/*.sample
+	$(RUNNER) install -m755 git-global-hook $(INSTALL_DIR)/.git/hook-runner
+	$(RUNNER) for hook in $(GITHOOKS); do \
+	    $(RUNNER) ln -sf $(INSTALL_DIR)/.git/hook-runner $(INSTALL_DIR)/.git/templates/hooks/$$hook ; \
+	done
+	$(RUNNER) rsync -ar git-hooks/ $(INSTALL_DIR)/.git/hooks/
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.urxvt/ext/
 	$(RUNNER) $(INSTALLER) custom-url-matcher $(INSTALL_DIR)/.urxvt/ext/
 
