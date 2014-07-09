@@ -50,6 +50,7 @@
     psuh     = push
     whatsnew = log ORIG_HEAD..HEAD
     vdiff    = difftool --tool=vimdiff --no-prompt
+    rs       = remote show -n
 
 [push]
     default = upstream
