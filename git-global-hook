@@ -117,10 +117,14 @@ my $last_non_zero_status;
 
 my @hooks = collect_hooks($hook_name);
 
-my $stdin = do {
-    local $/;
-    <STDIN>
-};
+my $stdin = '';
+
+if($metadata->{'requires_input'}) {
+    $stdin = do {
+        local $/;
+        <STDIN>
+    };
+}
 
 foreach my $hook (@hooks) {
     my $status = run_hook($hook, $stdin, @ARGV);
