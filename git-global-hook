@@ -13,8 +13,8 @@ my %HOOK_METADATA = (
     'prepare-commit-msg' => { bail_early => 1 },
     'commit-msg'         => { bail_early => 1 },
     'pre-rebase'         => { bail_early => 1 },
-    'pre-push'           => { bail_early => 1 },
-    'pre-receive'        => { bail_early => 1 },
+    'pre-push'           => { bail_early => 1, requires_input => 1 },
+    'pre-receive'        => { bail_early => 1, requires_input => 1 },
     'update'             => { bail_early => 1 },
     'pre-auto-gc'        => { bail_early => 1 },
 
@@ -22,9 +22,9 @@ my %HOOK_METADATA = (
     'post-commit'        => { bail_early => 0 },
     'post-checkout'      => { bail_early => 0 },
     'post-merge'         => { bail_early => 0 },
-    'post-receive'       => { bail_early => 0 },
+    'post-receive'       => { bail_early => 0, requires_input => 1 },
     'post-update'        => { bail_early => 0 },
-    'post-rewrite'       => { bail_early => 0 },
+    'post-rewrite'       => { bail_early => 0, requires_input => 1 },
 );
 
 sub hook_cmp {
