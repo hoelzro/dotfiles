@@ -15,3 +15,7 @@ $else
   C-a: self-insert
   "\C-a\C-a": beginning-of-line
 $endif
+
+$if mysql
+  "\C-xs": "show tables like '%%';\e[D\e[D\e[D"
+$endif
