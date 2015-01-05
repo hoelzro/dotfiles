@@ -62,4 +62,7 @@ do {
             caller_info => 0,
         });
     }
+
+    $_REPL->term->Attribs->{history_quotes_inhibit_expansion} = 1;
+    $_REPL->term->Attribs->{do_expand} = 0;
 };
