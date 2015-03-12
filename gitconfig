@@ -74,5 +74,8 @@
     abbrevCommit = true
     decorate     = true
 
+[fetch]
+    prune = true
+
 #[pager]
     #status = cat
