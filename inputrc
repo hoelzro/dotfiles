@@ -19,3 +19,5 @@ $endif
 $if mysql
   "\C-xs": "show tables like '%%';\e[D\e[D\e[D"
 $endif
+
+$include ~/.inputrc.local
