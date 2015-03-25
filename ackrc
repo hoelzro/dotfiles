@@ -1,6 +1,7 @@
 --type-add=perl:ext:pm6
 --type-set=perl6:ext:p6,pm6,pm,pl
 --type-add=perl6:firstlinematch:/perl6/
+--type-add=nqp:ext:nqp
 --type-add=mason:ext:html,comp
 --type-add=qml:ext:qml
 --type-add=xul:ext:xul
