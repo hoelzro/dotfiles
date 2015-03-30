@@ -2,12 +2,7 @@ set expand-tilde on
 
 C-f: forward-word
 C-b: backward-word
-# XXX how do we fix this? ↓
-#C-j: next-history
 C-k: previous-history
-#C-s: unix-filename-rubout
-# XXX this breaks Devel::REPL; fix with conditional construct ↓
-#C-{: complete-into-braces
 
 $if term=screen
  # nothing; the else is the interesting part
