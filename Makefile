@@ -37,7 +37,7 @@ install_dotfiles:
 	$(RUNNER) rm -f $(INSTALL_DIR)/.git/templates/hooks/*.sample
 	$(RUNNER) install -m755 git-global-hook $(INSTALL_DIR)/.git/hook-runner
 	$(RUNNER) for hook in $(GITHOOKS); do \
-	    $(RUNNER) ln -sf $(INSTALL_DIR)/.git/hook-runner $(INSTALL_DIR)/.git/templates/hooks/$$hook ; \
+	    $(RUNNER) ln -sf $(HOME)/.git/hook-runner $(INSTALL_DIR)/.git/templates/hooks/$$hook ; \
 	done
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.git/templates/hooks.d
 	$(RUNNER) rsync -ar git-hooks/ $(INSTALL_DIR)/.git/hooks/
