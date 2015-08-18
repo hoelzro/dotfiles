@@ -14,8 +14,6 @@ urxvt*perl-ext-common:   default,readline,selection-to-clipboard,custom-url-matc
 urxvt.colorUL:           #86a2be
 urxvt*font:              xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
 urxvt*boldFont:          xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
-urxvt*iso14755:          disabled
-urxvt*iso14755_52:       disabled
 
 urxvt*color4:  #6f6fff
 urxvt*color12: #9f9fff
