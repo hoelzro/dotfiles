@@ -1,0 +1,46 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use feature qw(say);
+
+my $NONE_REVISION = '0' x 40;
+
+sub parse_github_info {
+    my ( $url ) = @_;
+
+    if($url =~ m{github[.]com:(?<user>\w+)/(?<repo>\w+)}) {
+        return @+{qw/user repo/};
+    }
+    return;
+}
+
+sub github_branch_link {
+    my ( $user, $repo, $branch ) = @_;
+
+    return "https://github.com/$user/$repo/tree/$branch";
+}
+
+sub github_comparison_link {
+    my ( $user, $repo, $local, $remote ) = @_;
+
+    return "https://github.com/$user/$repo/compare/$remote...$local";
+}
+
+my ( $remote_name, $remote_location ) = @ARGV;
+
+my ( $gh_user, $gh_repo ) = parse_github_info($remote_location);
+
+exit unless $gh_user && $gh_repo;
+
+while(<STDIN>) {
+    chomp;
+    my ( $local_ref, $local_sha, $remote_ref, $remote_sha ) = split;
+    next if $local_ref eq '(delete)';
+    my $refname = $remote_ref =~ s{^refs/heads/}{}r;
+    if($remote_sha eq $NONE_REVISION) {
+        say $refname, ' ', github_branch_link($gh_user, $gh_repo, $refname);
+    } else {
+        say $refname, ' ', github_comparison_link($gh_user, $gh_repo, $local_sha, $remote_sha);
+    }
+}
