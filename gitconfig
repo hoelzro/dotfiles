@@ -21,7 +21,7 @@
     status      = auto
     ui          = auto
 
-[url "git://github.com/hoelzro/"]
+[url "https://github.com/hoelzro/"]
     insteadOf = hoelzro:
 [url "git@github.com:hoelzro/"]
     pushInsteadOf = hoelzro:
@@ -29,10 +29,10 @@
 [url "git@bitbucket.org:hoelzro/"]
     insteadOf = hoelzrobb:
 
-[url "git://github.com/"]
+[url "https://github.com/"]
     insteadOf = github:
 
-[url "git://github.com/"]
+[url "https://github.com/"]
     insteadOf = githubrw:
 [url "git@github.com:"]
     pushInsteadOf = githubrw:
