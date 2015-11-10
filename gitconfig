@@ -76,3 +76,6 @@
 
 [fetch]
     prune = true
+
+[pretty]
+    online = %H %s
