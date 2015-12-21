@@ -1,6 +1,6 @@
 " vim:ft=vim
 
-highlight CmdLine color: white
+highlight! CmdLine background: black; color: white
 set hintchars=asdfjkl;
 set tabnumbers
 source! /home/rob/.vimperatorrc.local
