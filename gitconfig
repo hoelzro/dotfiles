@@ -18,6 +18,9 @@
     show = /usr/share/git/diff-highlight/diff-highlight | less -FRX
     diff = /usr/share/git/diff-highlight/diff-highlight | less -FRX
 
+[diff]
+    compactionHeuristic = true
+
 [init]
     templatedir=~/.git/templates
 
