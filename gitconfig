@@ -13,6 +13,11 @@
     excludesfile   = ~/.gitignore
     whitespace     = tab-in-indent,trailing-space
 
+[pager]
+    log = /usr/share/git/diff-highlight/diff-highlight | less -FRX
+    show = /usr/share/git/diff-highlight/diff-highlight | less -FRX
+    diff = /usr/share/git/diff-highlight/diff-highlight | less -FRX
+
 [init]
     templatedir=~/.git/templates
 
