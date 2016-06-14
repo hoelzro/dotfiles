@@ -1,0 +1,6 @@
+set line-graphics = utf-8
+set tab-size = 4
+set reference-format = hide:remote {tracked-remote}
+set show-changes = false
+set ignore-case = true
+set editor-line-number = true

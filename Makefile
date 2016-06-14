@@ -28,6 +28,7 @@ install_dotfiles:
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.luarocks
 	$(RUNNER) $(INSTALLER) luarocks.lua $(INSTALL_DIR)/.luarocks/config.lua
 	$(RUNNER) $(INSTALLER) hgrc $(INSTALL_DIR)/.hgrc
+	$(RUNNER) $(INSTALLER) tigrc $(INSTALL_DIR)/.tigrc
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.git/templates
 	$(RUNNER) if [[ -e /usr/share/git-core/templates ]]; then \
 	    rsync -ar /usr/share/git-core/templates/ $(INSTALL_DIR)/.git/templates/ ; \
