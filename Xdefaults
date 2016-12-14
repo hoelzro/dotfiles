@@ -7,13 +7,13 @@ xterm*scrollBar:        false
 xterm*backarrowKey:     false
 xterm*ttyModes:         erase ^?
 
-urxvt*background:        black
-urxvt*foreground:        green
+urxvt*background:        #383c4a
+urxvt*foreground:        #d3dae3
 urxvt*scrollBar:         false
 urxvt*perl-ext-common:   default,readline,selection-to-clipboard,custom-url-matcher
 urxvt.colorUL:           #86a2be
-urxvt*font:              xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
-urxvt*boldFont:          xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
+urxvt*font:              xft:Inconsolata-Regular:pixelsize=14:antialias=true:hinting=true,xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true
+urxvt*boldFont:          xft:Inconsolata-Regular:bold:pixelsize=14:antialias=true:hinting=true,xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
 urxvt*iso14755_52:       false
 
 urxvt*color4:  #6f6fff
