@@ -20,6 +20,7 @@
 
 [diff]
     compactionHeuristic = true
+    indentHeuristic = true
 
 [init]
     templatedir=~/.git/templates
