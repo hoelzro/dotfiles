@@ -1,4 +1,5 @@
 set expand-tilde on
+set editing-mode vi
 
 C-f: forward-word
 C-b: backward-word
