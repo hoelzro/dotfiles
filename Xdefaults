@@ -16,8 +16,23 @@ urxvt*font:              xft:Inconsolata-Regular:pixelsize=14:antialias=true:hin
 urxvt*boldFont:          xft:Inconsolata-Regular:bold:pixelsize=14:antialias=true:hinting=true,xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
 urxvt*iso14755_52:       false
 
+urxvt*color1: #ff6f6f
+urxvt*color9: #ff9f9f
+
+urxvt*color2: #6fff6f
+urxvt*color10: #9fff9f
+
+urxvt*color3:  #ffff6f
+urxvt*color11: #ffff9f
+
 urxvt*color4:  #6f6fff
 urxvt*color12: #9f9fff
+
+urxvt*color5:  #ff6fff
+urxvt*color13: #ff9fff
+
+urxvt*color6:  #6fffff
+urxvt*color14: #9fffff
 
 xterm*VT100.Translations: \
         #override <Key>BackSpace: string(0x7f) \n\
