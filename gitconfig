@@ -88,3 +88,6 @@
 
 [pretty]
     online = %H %s
+
+[status]
+    showStash = true
