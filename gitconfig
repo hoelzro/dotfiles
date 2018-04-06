@@ -21,6 +21,7 @@
 [diff]
     compactionHeuristic = true
     indentHeuristic = true
+    colorMoved = default
 
 [init]
     templatedir=~/.git/templates
