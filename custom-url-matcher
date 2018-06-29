@@ -16,8 +16,8 @@ sub on_button_press {
 
     return unless $event->{'button'} == 1 && $event->{'state'} & urxvt::ControlMask;
 
-    my $buffer    = join('', map { $self->ROW_t($_) } (0 .. $self->nrow - 1));
-    my $click_pos = $event->{'row'} * $self->ncol + $event->{'col'};
+    my $buffer    = join('', map { $self->ROW_t($_) } ($self->view_start .. ($self->view_start + $self->nrow)));
+    my $click_pos = ($event->{'row'} - $self->view_start) * $self->ncol + $event->{'col'};
     my $top = $self->top_row;
     my $bottom = $self->nrow - 1;
 
