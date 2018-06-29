@@ -30,4 +30,5 @@ sub on_button_press {
             return;
         }
     }
+    return;
 }
