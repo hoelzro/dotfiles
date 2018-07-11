@@ -64,6 +64,7 @@
 
 [push]
     default = upstream
+    followTags = true
 
 [github]
     user = hoelzro
