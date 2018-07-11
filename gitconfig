@@ -14,9 +14,9 @@
     whitespace     = tab-in-indent,trailing-space
 
 [pager]
-    log = /usr/share/git/diff-highlight/diff-highlight | less -FRX
-    show = /usr/share/git/diff-highlight/diff-highlight | less -FRX
-    diff = /usr/share/git/diff-highlight/diff-highlight | less -FRX
+    log = /usr/share/git/diff-highlight/diff-highlight | less -FRXi
+    show = /usr/share/git/diff-highlight/diff-highlight | less -FRXi
+    diff = /usr/share/git/diff-highlight/diff-highlight | less -FRXi
 
 [diff]
     compactionHeuristic = true
