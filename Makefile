@@ -45,6 +45,7 @@ install_dotfiles:
 	$(RUNNER) rsync -ar git-hooks/ $(INSTALL_DIR)/.git/hooks/
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.urxvt/ext/
 	$(RUNNER) $(INSTALLER) custom-url-matcher $(INSTALL_DIR)/.urxvt/ext/
+	$(RUNNER) $(INSTALLER) npmrc $(INSTALL_DIR)/.npmrc
 
 install_repos:
 	$(RUNNER) cat repos | while read repo install_location ; do \
