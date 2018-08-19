@@ -6,5 +6,7 @@
 --type-add=qml:ext:qml
 --type-add=xul:ext:xul
 --type-add=elm:ext:elm
+--type-add=gettext:ext:po,pot
 --ignore-dir=extlib
 --ignore-dir=elm-stuff
+--no-gettext
