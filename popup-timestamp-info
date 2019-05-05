@@ -1,0 +1,16 @@
+#!perl
+
+use feature qw(say);
+use experimental qw(signatures);
+
+use POSIX qw(strftime);
+
+sub on_start($self) {
+   push @{ $self->{'term'}{'selection_popup_hook'} }, sub ($popup) {
+       return unless /^\d{10}$/; # XXX 999999999 is Sep 8 2001, which is further back than I likely care about
+
+       $popup->add_title(strftime('%Y-%m-%d %H:%M:%S %z', localtime($_)));
+
+       return;
+   };
+}
