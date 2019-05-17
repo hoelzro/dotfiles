@@ -44,8 +44,7 @@ install_dotfiles:
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.git/templates/hooks.d
 	$(RUNNER) rsync -ar git-hooks/ $(INSTALL_DIR)/.git/hooks/
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.urxvt/ext/
-	$(RUNNER) $(INSTALLER) custom-url-matcher $(INSTALL_DIR)/.urxvt/ext/
-	$(RUNNER) $(INSTALLER) popup-timestamp-info $(INSTALL_DIR)/.urxvt/ext/
+	$(RUNNER) rsync -ar urxvt/ $(INSTALL_DIR)/.urxvt/ext/
 	$(RUNNER) $(INSTALLER) npmrc $(INSTALL_DIR)/.npmrc
 
 install_repos:
