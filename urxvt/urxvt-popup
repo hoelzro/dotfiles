@@ -1,0 +1,70 @@
+#!perl
+
+use feature qw(say);
+use experimental qw(signatures);
+
+sub after($func_name, $advice) {
+    my $symbol_table = do {
+        no strict 'refs';
+        \%{__PACKAGE__ . '::'}
+    };
+
+    my $orig_func_glob = $symbol_table->{$func_name};
+
+    unless($orig_func_glob) {
+        warn "$func_name isn't defined in this package - nothing to apply advice to";
+        return;
+    }
+
+    my $orig_func = *{$orig_func_glob}{'CODE'};
+
+    *$orig_func_glob = sub {
+        my $return_scalar;
+        my @return_array;
+
+        if(defined(wantarray) && wantarray) {
+            @return_array = $orig_func->(@_);
+        } elsif(defined(wantarray)) {
+            $return_scalar = $orig_func->(@_);
+        } else {
+            $orig_func->(@_);
+        }
+
+        $advice->(@_);
+
+        if(wantarray) {
+            return @return_array;
+        } else {
+            return $return_scalar;
+        }
+    };
+}
+
+do '/usr/lib/urxvt/perl/urxvt-popup';
+
+after on_init => sub($term) {
+    my $geometry = $term->resource('geometry');
+
+    return unless my ( $width, $height, $x, $y ) = $geometry =~ /^(\d+)x(\d+)[+](\d+)[+](\d+)$/;
+
+    # height is in characters, so we need to convert to pixels
+    # we can't use $term->fheight (we need to be mapped for that, and we're not yet),
+    # so let's just optimistically assume that our first choice for font is installed
+    # and parse out its pixel size
+    return unless my ( $font_height ) = $term->resource('font') =~ /:pixelsize=(\d+)/;
+
+    my ( $screen_height ) = qx(xwininfo -root | grep 'Height:') =~ /Height:\s*(\d+)/;
+
+    $height *= $font_height;
+    $height += 28; # for some reason, there always seems to be 28 pixels of padding in
+                   # my popups - it's probably some font metrics stuff, but I'm not
+                   # keen on loading a dependency like Pango that I might not have
+                   # installed, and this works for my purposes
+
+    if($y + $height > $screen_height) {
+        my $adjustment = $y + $height - $screen_height;
+        $y -= $adjustment;
+
+        $term->resource(geometry => "${width}x${height}+$x+$y");
+    }
+};
