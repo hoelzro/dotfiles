@@ -10,3 +10,7 @@
 --ignore-dir=extlib
 --ignore-dir=elm-stuff
 --no-gettext
+--type-add=docker:is:Dockerfile
+--type-add=salt:ext:sls
+--type-add=terraform:ext:tf,tfvars
+--type-add=toml:ext:toml
