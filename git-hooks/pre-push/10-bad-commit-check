@@ -35,18 +35,22 @@ while(<STDIN>) {
     chomp;
     my ( $local_ref, $local_sha, $remote_ref, $remote_sha ) = split;
 
-    my @commits = slurp_command('git', 'log', '--pretty=format:%s%n',
+    my @lines = slurp_command('git', 'log', "--pretty=format:%h\t%aN\t%s",
             $remote_sha . '..' . $local_sha);
 
-    foreach my $commit (@commits) {
+    foreach my $line (@lines) {
+        my ( $commit_hash, $author_name, $commit ) = split /\t/, $line, 3;
+
+        next unless $author_name =~ /\bhoelz\b/i;
+
         if($commit =~ /fixup!/) {
-            print STDERR "Commit '$commit' is a fixup commit\n";
+            print STDERR "Commit $commit_hash '$commit' is a fixup commit\n";
             exit 1;
-        } elsif($commit =~ /don(?:')?t\s*push/i) {
-            print STDERR "Commit '$commit' says not to push it...\n";
+        } elsif($commit =~ /don(?:')?t\s*push/i) { # XXX what about the body?
+            print STDERR "Commit $commit_hash '$commit' says not to push it...\n";
             exit 1;
         } elsif($commit =~ /\bwip\b/i) {
-            print STDERR "Commit '$commit' is a work-in-progress\n";
+            print STDERR "Commit $commit_hash '$commit' is a work-in-progress\n";
             exit 1;
         }
     }
