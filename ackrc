@@ -14,3 +14,6 @@
 --type-add=salt:ext:sls
 --type-add=terraform:ext:tf,tfvars
 --type-add=toml:ext:toml
+--type-add=upstart:ext:conf
+--type-add=jinja:ext:jinja
+--type-add=test:match:.*_test[.]go$
