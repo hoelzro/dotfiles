@@ -7,6 +7,7 @@
 --type-add=xul:ext:xul
 --type-add=elm:ext:elm
 --type-add=gettext:ext:po,pot
+--type-add=tid:ext:tid
 --ignore-dir=extlib
 --ignore-dir=elm-stuff
 --no-gettext
