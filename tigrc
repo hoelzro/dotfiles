@@ -4,3 +4,4 @@ set reference-format = hide:remote {tracked-remote}
 set show-changes = false
 set ignore-case = true
 set editor-line-number = true
+set mailmap = true
