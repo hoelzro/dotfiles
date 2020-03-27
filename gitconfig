@@ -19,6 +19,7 @@
     diff = /usr/share/git/diff-highlight/diff-highlight | less -FRXi
 
 [diff]
+    algorithm = histogram
     compactionHeuristic = true
     indentHeuristic = true
     colorMoved = default
