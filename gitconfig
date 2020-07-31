@@ -26,6 +26,7 @@
 
 [init]
     templatedir=~/.git/templates
+    defaultBranch = main
 
 [color]
     interactive = auto
