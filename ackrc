@@ -18,6 +18,7 @@
 --type-add=upstart:ext:conf
 --type-add=jinja:ext:jinja
 --type-add=test:match:.*_test[.]go$
+--type-add=test:ext:t
 --type-add=markdown:ext:md
 --type-add=tfbackup:match:[.]tfstate[.]\d+[.]backup
 --type-add=pod:ext:pod
