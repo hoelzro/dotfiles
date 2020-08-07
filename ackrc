@@ -24,3 +24,4 @@
 --type-add=pod:ext:pod
 --no-tfbackup
 --ignore-file=is:tags
+--notest
