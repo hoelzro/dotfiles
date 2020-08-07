@@ -25,3 +25,4 @@
 --no-tfbackup
 --ignore-file=is:tags
 --notest
+--ignore-dir=vendor
