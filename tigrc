@@ -5,3 +5,4 @@ set show-changes = false
 set ignore-case = true
 set editor-line-number = true
 set mailmap = true
+set main-view-date-local = true
