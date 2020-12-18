@@ -1,0 +1,14 @@
+#!perl
+
+use feature qw(say);
+use experimental qw(signatures);
+
+sub on_start($self) {
+    require charnames;
+
+    push @{ $self->{'term'}{'selection_popup_hook'} }, sub ($popup) {
+        my $char_name = charnames::viacode(ord($_));
+        $popup->add_title($char_name);
+        return;
+    };
+}
