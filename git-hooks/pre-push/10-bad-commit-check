@@ -31,9 +31,27 @@ sub slurp_command {
     }
 }
 
+my ( $remote ) = @ARGV;
+
 while(<STDIN>) {
     chomp;
     my ( $local_ref, $local_sha, $remote_ref, $remote_sha ) = split;
+
+    # if we're deleting a remote branch, just skip
+    next if $local_sha eq ('0' x 40);
+
+    # if $remote_sha is '0' x 40, it's a new branch - compare to upstream HEAD
+    if($remote_sha eq ('0' x 40)) {
+        # XXX detect when HEAD isn't present and bail
+        ( $remote_sha ) = slurp_command('git', 'rev-parse', "refs/remotes/$remote/HEAD");
+
+        # if we don't get a sha back, likely HEAD doesn't exist on the remote
+        # (and we would've seen an error above if we properly handled them), so
+        # bail on this line
+        if($remote_sha !~ /^[[:xdigit:]]{40,64}$/) {
+            next;
+        }
+    }
 
     my @lines = slurp_command('git', 'log', "--pretty=format:%h\t%aN\t%s",
             $remote_sha . '..' . $local_sha);
