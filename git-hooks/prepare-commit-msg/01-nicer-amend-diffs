@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+
+import os
+import subprocess
+import sys
+
+# check for the environment variable my gcv function
+# sets to flag the current commit command as using --amend
+if not os.environ.get('_GIT_AMEND'):
+    sys.exit(0)
+
+# if we're amending, do some magic to show the changes
+# we're amending in slightly differently than the other
+# changes coming in on the newly crafted commit
+
+commit_msg_filename = sys.argv[1]
+
+with open(commit_msg_filename, 'r+b') as f:
+    # strip the existing diff part
+    seen_scissors = False
+    diff_pos = 0
+    for line in f:
+        if seen_scissors and line.startswith(b'diff '):
+            f.truncate(diff_pos)
+            f.seek(0, os.SEEK_END)
+            break
+        elif b'--- >8 ---' in line:
+            seen_scissors = True
+        diff_pos += len(line)
+
+    # get the tree of the what we're applying as the new commit…
+    tree_id = subprocess.check_output(['git', 'write-tree'], encoding='utf8').rstrip()
+    # …then generate a dummy merge commit between the commit we're amending and its parent,
+    # using that tree as the merge commit's contents tree…
+    commit_id = subprocess.check_output(['git', 'commit-tree', tree_id, '-p', 'HEAD', '-p', 'HEAD^', '-m', 'dummy'], encoding='utf8').rstrip()
+    # …so that when we get the diff for the dummy merge commit, the changes new to the
+    # amended commit show up with a ++ prefix
+    diff_output = subprocess.check_output(['git', 'diff', commit_id, '--not', 'HEAD', '--not', 'HEAD^'])
+    f.write(diff_output)
