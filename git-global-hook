@@ -79,26 +79,43 @@ sub collect_hooks {
 sub run_hook {
     my ( $script, $stdin, @args ) = @_;
 
-    my ( $read, $write );
+    my $hook_path = $script;
+    $hook_path =~ s{^$ENV{'HOME'}}{~};
 
-    pipe($read, $write) or return 1;
+    my ( $stdin_read, $stdin_write );
+    my ( $stdout_read, $stdout_write );
+
+    # XXX better cleanup of pipes upon failure
+    pipe($stdin_read, $stdin_write) or return 1;
+    pipe($stdout_read, $stdout_write) or return 1;
     my $pid = fork();
 
     if($pid == -1) {
-        close $read;
-        close $write;
+        close $stdin_read;
+        close $stdin_write;
+        close $stdout_read;
+        close $stdout_write;
         return 1;
     }
 
     if($pid) {
-        close $read;
-        print {$write} $stdin;
-        close $write;
+        close $stdin_read;
+        close $stdout_write;
+
+        print {$stdin_write} $stdin;
+        close $stdin_write;
+        while(<$stdout_read>) {
+            print "[$hook_path] $_";
+        }
         waitpid $pid, 0;
         return $? >> 8;
     } else {
-        close $write;
-        open STDIN, '<&', $read;
+        close $stdin_write;
+        close $stdout_read;
+        open STDIN, '<&', $stdin_read;
+        open STDOUT, '>&', $stdout_write;
+        # XXX having a separate pipe for stderr would be ideal
+        open STDERR, '>&', $stdout_write;
 
         exec $script, @args;
         exit 127;
