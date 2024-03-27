@@ -76,7 +76,7 @@
 
 [merge]
     defaultToUpstream = true
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 
 [pull]
     rebase = true
