@@ -104,6 +104,7 @@
     pushAlreadyExists = false
     pushFetchFirst = false
     pushNeedsForce = false
+    skippedcherrypicks = false
     statusHints = false
     statusUoption = false
     commitBeforeMerge = false
