@@ -72,11 +72,13 @@
     user = hoelzro
 
 [rebase]
+    autostash  = true
     autosquash = true
 
 [merge]
     defaultToUpstream = true
     conflictstyle = zdiff3
+    autostash = true
 
 [pull]
     rebase = true
