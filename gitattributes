@@ -1,2 +1,3 @@
 Makefile whitespace=trailing-space
 *.go whitespace=trailing-space
+*.cue whitespace=trailing-space
