@@ -1,0 +1,60 @@
+#!perl
+
+sub on_osc_seq {
+  my ( $self, $op, $args, $resp ) = @_;
+
+  if($op != 133 || $args ne 'B') {
+    return;
+  }
+
+  my ( $cursor_row ) = $self->screen_cur;
+
+  my $r = $self->ROW_r($cursor_row);
+  my $custom = urxvt::GET_CUSTOM($r->[0]);
+  $r->[0] = urxvt::SET_CUSTOM($r->[0], $custom | 1);
+  $self->ROW_r($cursor_row, $r);
+
+  return;
+}
+
+sub scroll_up {
+  my ( $self ) = @_;
+
+  for(my $row = $self->view_start - 1; $row >= $self->top_row; $row--) {
+    my $r = $self->ROW_r($row);
+    if(urxvt::GET_CUSTOM($r->[0]) & 1) {
+      $self->view_start($row);
+      last;
+    }
+  }
+
+  return;
+}
+
+sub scroll_down {
+  my ( $self ) = @_;
+
+  for(my $row = $self->view_start + 1; $row < $self->nrow; $row++) {
+    my $r = $self->ROW_r($row);
+    if(urxvt::GET_CUSTOM($r->[0]) & 1) {
+      $self->view_start($row);
+      last;
+    }
+  }
+
+  return;
+}
+
+sub on_action {
+  my ( $self, $action_name ) = @_;
+
+  if($action_name eq 'scroll_up') {
+    scroll_up($self);
+  } elsif($action_name eq 'scroll_down') {
+    scroll_down($self);
+  }
+
+  return;
+}
+
+1;
