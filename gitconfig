@@ -123,8 +123,6 @@
   sort = -committerdate
 [tag]
   sort = version:refname
-[column]
-  ui = auto
 [diff]
   renames = true
   colorMoved = plain
