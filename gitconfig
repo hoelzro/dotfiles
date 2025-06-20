@@ -126,3 +126,7 @@
 [diff]
   renames = true
   colorMoved = plain
+[syncdotfiles]
+  repo = /home/rob/.vim
+  repo = /home/rob/.config/awesome/
+  repo = /home/rob/projects/dotfiles/
