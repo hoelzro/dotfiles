@@ -10,7 +10,7 @@ xterm*ttyModes:         erase ^?
 urxvt*background:        #383c4a
 urxvt*foreground:        #d3dae3
 urxvt*scrollBar:         false
-urxvt*perl-ext-common:   default,readline,selection-to-clipboard,custom-url-matcher,keyboard-select,resize-font,popup-timestamp-info,popup-emoji-info
+urxvt*perl-ext-common:   default,readline,selection-to-clipboard,custom-url-matcher,keyboard-select,resize-font,popup-extra-info,popup-emoji-info
 urxvt.colorUL:           #86a2be
 urxvt*font:              xft:Iosevka:pixelsize=14:antialias=true:hinting=true,xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true,xft:NotoSansMath-Regular:pixelsize=12:antialias=true:hinting=true,xft:NotoColorEmoji:pixelsize=12:antialias=true:hinting=true
 urxvt*boldFont:          xft:Iosevka:bold:pixelsize=14:antialias=true:hinting=true,xft:DejaVu Sans Mono:bold:pixelsize=12:antialias=true:hinting=true,xft:NotoSans-Bold:pixelsize=12:antialias=true:hinting=true,xft:NotoColorEmoji:pixelsize=12:antialias=true:hinting=true
