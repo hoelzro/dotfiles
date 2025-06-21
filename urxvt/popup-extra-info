@@ -5,11 +5,48 @@ use experimental qw(signatures);
 
 use POSIX qw(strftime);
 
+my @SUFFIXES = (
+    [T  => 1_000_000_000_000],
+    [G  => 1_000_000_000],
+    [M  => 1_000_000],
+    [K  => 1_000],
+    ['' => 1],
+);
+
+sub format_bytes($bytes) {
+    for my $suffix_tuple (@SUFFIXES) {
+        my ( $suffix, $mult ) = @$suffix_tuple;
+        if($bytes > $mult) {
+            return sprintf("%.2f%s\n", $_ / $mult, $suffix);
+        }
+    }
+
+    return $bytes;
+}
+
 sub on_start($self) {
     push @{ $self->{'term'}{'selection_popup_hook'} }, sub ($popup) {
-        return unless /^\d{10}$/; # XXX 999999999 is Sep 8 2001, which is further back than I likely care about
+        if(/^\d{10}$/) {
+            $popup->add_title(strftime('%Y-%m-%d %H:%M:%S %z', localtime($_)));
+        }
 
-        $popup->add_title(strftime('%Y-%m-%d %H:%M:%S %z', localtime($_)));
+        if(/^\d{13}$/) {
+            $popup->add_title(strftime('%Y-%m-%d %H:%M:%S %z', localtime($_ / 1_000)));
+        }
+
+        if(/^\d{16}$/) {
+            $popup->add_title(strftime('%Y-%m-%d %H:%M:%S %z', localtime($_ / 1_000_000)));
+        }
+
+        if(/^\d+$/) {
+            $popup->add_title(format_bytes($_));
+        }
+
+        if(m{\n}) {
+            my $line_count = split /\n/, $_;
+            $popup->add_title("$line_count lines");
+        }
+
 
         return;
     };
