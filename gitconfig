@@ -128,5 +128,6 @@
   colorMoved = plain
 [syncdotfiles]
   repo = /home/rob/.vim
+  repo = /home/rob/.zsh-scripts/
   repo = /home/rob/.config/awesome/
   repo = /home/rob/projects/dotfiles/
