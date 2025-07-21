@@ -6,18 +6,20 @@ use experimental qw(signatures);
 use POSIX qw(strftime);
 
 my @SUFFIXES = (
-    [T  => 1_000_000_000_000],
-    [G  => 1_000_000_000],
-    [M  => 1_000_000],
-    [K  => 1_000],
-    ['' => 1],
+    [T  => 4],
+    [G  => 3],
+    [M  => 2],
+    [K  => 1],
+    ['' => 0],
 );
 
 sub format_bytes($bytes) {
     for my $suffix_tuple (@SUFFIXES) {
-        my ( $suffix, $mult ) = @$suffix_tuple;
-        if($bytes > $mult) {
-            return sprintf("%.2f%s\n", $_ / $mult, $suffix);
+        my ( $suffix, $exp ) = @$suffix_tuple;
+        my $si_mult = 1_000 ** $exp;
+        my $iec_mult = 1_024 ** $exp;
+        if($bytes > $si_mult) {
+            return sprintf("%.2f%s %.2f%s\n", $_ / $si_mult, $suffix . 'B', $_ / $iec_mult, $suffix . 'iB');
         }
     }
 
