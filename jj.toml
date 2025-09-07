@@ -1,0 +1,13 @@
+#:schema https://jj-vcs.github.io/jj/latest/config-schema.json
+
+[ui]
+diff-formatter = ":git"
+paginate = "auto"
+pager = ["less", "-FRXi"]
+
+[user]
+name = "Rob Hoelz"
+email = "rob@hoelz.ro"
+
+[colors."diff token"]
+underline = false

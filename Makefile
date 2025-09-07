@@ -47,6 +47,8 @@ install_dotfiles:
 	$(RUNNER) rsync -ar urxvt/ $(INSTALL_DIR)/.urxvt/ext/
 	$(RUNNER) $(INSTALLER) npmrc $(INSTALL_DIR)/.npmrc
 	$(RUNNER) $(INSTALLER) jq/main.jq $(INSTALL_DIR)/.jq
+	$(RUNNER) mkdir -p $(INSTALL_DIR)/.config/jj/
+	$(RUNNER) $(INSTALLER) jj.toml $(INSTALL_DIR)/.config/jj/config.toml
 
 install_repos:
 	$(RUNNER) cat repos | while read repo install_location ; do \
