@@ -131,3 +131,7 @@
   repo = /home/rob/.zsh-scripts/
   repo = /home/rob/.config/awesome/
   repo = /home/rob/projects/dotfiles/
+
+[absorb]
+  oneFixupPerCommit = true
+  fixupTargetAlwaysSHA = true
