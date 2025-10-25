@@ -49,6 +49,8 @@ install_dotfiles:
 	$(RUNNER) $(INSTALLER) jq/main.jq $(INSTALL_DIR)/.jq
 	$(RUNNER) mkdir -p $(INSTALL_DIR)/.config/jj/
 	$(RUNNER) $(INSTALLER) jj.toml $(INSTALL_DIR)/.config/jj/config.toml
+	$(RUNNER) mkdir -p $(INSTALL_DIR)/.claude/
+	$(RUNNER) rsync -ar claude/ $(INSTALL_DIR)/.claude/
 
 install_repos:
 	$(RUNNER) cat repos | while read repo install_location ; do \
