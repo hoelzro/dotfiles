@@ -16,3 +16,9 @@
 
 - **Run all tests before completing work.** Ensure everything passes before reporting back.
 - **Maintain or improve test coverage.** Preserve existing coverage levels and add tests for new code paths.
+
+# Environment
+
+You don't have root/sudo - favor doing things in a rootless manner (eg. using podman over docker), but if you absolutely _must_ do something as root (eg. installing a system-level package), or if doing so would be a _really_ dumb idea, feel free to stop what you're doing and just ask for my help.
+
+If you can work around it without root but the solution is gross (eg. installing a package to a user-writable directory), go ahead and do that, but make notes on how I can prepare the environment better for you next time.
