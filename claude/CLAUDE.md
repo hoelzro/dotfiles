@@ -12,6 +12,12 @@
 - **Fail-fast.** Validate inputs early, throw errors immediately on invalid states, and surface problems quickly.
 - **Prefer functional over OOP.** Use pure functions, immutability, and composition over classes and inheritance when practical.
 
+## Tech Stack Preferences
+
+- **Favor Python for servers.** Use Python for backend services and server-side applications.
+- **Favor Flask.** Prefer Flask for web frameworks when building Python web applications.
+- **Favor vanilla JS for frontend.** Use vanilla JavaScript for frontend code rather than heavy frameworks when practical.
+
 ## Testing & Coverage
 
 - **Run all tests before completing work.** Ensure everything passes before reporting back.
