@@ -5,6 +5,7 @@
 ### Output Discipline
 
 - **Keep output clean and minimal.** Only print what's essential for debugging or required functionality. Quiet code signals success.
+- **Use logging frameworks.** When you *do* need to print some sort of diagnostic/progress/etc information, favor standard library loggers over plain print statements.
 - **Write self-documenting code.** Use clear variable and function names. Add comments only for complex business logic or non-obvious decisions.
 
 ### Design Philosophy
