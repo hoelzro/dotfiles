@@ -24,6 +24,12 @@
 - **Run all tests before completing work.** Ensure everything passes before reporting back.
 - **Maintain or improve test coverage.** Preserve existing coverage levels and add tests for new code paths.
 
+## Version Control
+
+- **Commit early and often.** Make small, logical, atomic commits as you work rather than saving everything for one large commit at the end.
+- **Each commit should be self-contained.** A single commit should represent one logical change that could be understood and reviewed independently.
+- **Write meaningful commit messages.** Describe *what* changed and *why*, not just *how*.
+
 # Environment
 
 You don't have root/sudo - favor doing things in a rootless manner (eg. using podman over docker), but if you absolutely _must_ do something as root (eg. installing a system-level package), or if doing so would be a _really_ dumb idea, feel free to stop what you're doing and just ask for my help.
