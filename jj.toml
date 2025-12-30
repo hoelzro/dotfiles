@@ -11,3 +11,13 @@ email = "rob@hoelz.ro"
 
 [colors."diff token"]
 underline = false
+
+[templates]
+draft_commit_description = '''
+concat(
+  builtin_draft_commit_description,
+  "JJ: Lines starting with \"JJ:\" (like this one) will be removed.\n",
+  "JJ: ignore-rest\n",
+  diff.git(),
+)
+'''
