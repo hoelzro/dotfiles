@@ -26,9 +26,24 @@
 
 ## Version Control
 
-- **Commit early and often.** Make small, logical, atomic commits as you work rather than saving everything for one large commit at the end.
-- **Each commit should be self-contained.** A single commit should represent one logical change that could be understood and reviewed independently.
-- **Write meaningful commit messages.** Describe *what* changed and *why*, not just *how*.
+### Commit Discipline (IMPORTANT)
+
+- **Detect VCS first.** If a `.jj` directory exists at the repo root, use `jj` commands. Otherwise, use `git`.
+- **Commit after every logical change.** Do not batch multiple unrelated changes. A "logical change" includes:
+  - Adding or modifying a function/module
+  - Fixing a bug
+  - Adding/updating tests
+  - Refactoring a section of code
+  - Updating configuration or documentation
+- **Never finish a task with uncommitted changes.** Before reporting that work is complete, verify all changes are committed.
+- **Commit commands:**
+  - **jj:** `jj commit -m "message"` (or `jj describe -m "message"` then `jj new` if amending the current change)
+  - **git:** `git add -A && git commit -m "message"`
+- **Write meaningful commit messages.** Format: `<what changed>: <why>` — e.g., `add input validation: prevent crash on empty config`
+
+### Pre-completion Checklist
+
+Before saying a task is done, run `jj status` (if using jj) or `git status` (if using git). If there are uncommitted changes, commit them first.
 
 # Environment
 
