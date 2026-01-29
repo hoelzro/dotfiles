@@ -43,7 +43,7 @@
 
 ### Plan Review Loop
 
-When planning non-trivial implementation tasks, after drafting a plan, launch an independent subagent to critique it. Address the feedback, then repeat until the critique comes back with no adjustments. If questions requiring user input arise during this process, ask the user before continuing.
+When planning non-trivial implementation tasks, after drafting a plan, launch a `plan-critic` subagent to critique it. Address the feedback, then repeat until the critique comes back with no adjustments. If questions requiring user input arise during this process, ask the user before continuing.
 
 ### Pre-completion Checklist
 
