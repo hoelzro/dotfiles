@@ -41,6 +41,10 @@
   - **git:** `git add -A && git commit -m "message"`
 - **Write meaningful commit messages.** Format: `<what changed>: <why>` — e.g., `add input validation: prevent crash on empty config`
 
+### Plan Review Loop
+
+When planning non-trivial implementation tasks, after drafting a plan, launch an independent subagent to critique it. Address the feedback, then repeat until the critique comes back with no adjustments. If questions requiring user input arise during this process, ask the user before continuing.
+
 ### Pre-completion Checklist
 
 Before saying a task is done, run `jj status` (if using jj) or `git status` (if using git). If there are uncommitted changes, commit them first.
