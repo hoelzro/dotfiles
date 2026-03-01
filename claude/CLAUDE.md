@@ -24,6 +24,11 @@
 - **Run all tests before completing work.** Ensure everything passes before reporting back.
 - **Maintain or improve test coverage.** Preserve existing coverage levels and add tests for new code paths.
 
+## Debugging
+
+- **Ask what the bug looks like before investigating.** When told something is broken, ask for symptoms (error message, wrong output, performance) before diving into code. Don't spend cycles guessing the failure mode.
+- **Always write a failing test before writing a fix.** Reproduce the bug in a test, confirm it fails, then fix the code and confirm the test passes. Never commit a fix without this red-green cycle.
+
 ## Version Control
 
 ### Commit Discipline (CRITICAL)
