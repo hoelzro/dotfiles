@@ -51,6 +51,8 @@ You don't have root/sudo - favor doing things in a rootless manner (eg. using po
 
 If you can work around it without root but the solution is gross (eg. installing a package to a user-writable directory), go ahead and do that, but make notes on how I can prepare the environment better for you next time.
 
+You're behind a very restrictive proxy - you can do web searches via the `WebSearch` tool, but for all other intents and purposes you can't really communicate with the outside world.
+
 # Communication
 
 ## Tone Calibration
