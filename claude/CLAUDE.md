@@ -26,19 +26,15 @@
 
 ## Version Control
 
-### Commit Discipline (IMPORTANT)
+### Commit Discipline (CRITICAL)
 
 - **Detect VCS first.** If a `.jj` directory exists at the repo root, use `jj` commands. Otherwise, use `git`.
-- **Commit after every logical change.** Do not batch multiple unrelated changes. A "logical change" includes:
-  - Adding or modifying a function/module
-  - Fixing a bug
-  - Adding/updating tests
-  - Refactoring a section of code
-  - Updating configuration or documentation
+- **Commit after every logical change — STOP and commit before moving on.** After completing any discrete step (adding a function, fixing a bug, updating a config, etc.), you MUST commit immediately before starting the next step. Do not "finish everything then commit at the end." A 6-step refactoring is 6 commits, not 1.
+- **When executing a multi-step plan:** treat each step as commit-then-continue. The workflow is: edit → verify syntax/tests → commit → next step. If you find yourself making a second logically-independent edit without having committed the first, stop and commit.
 - **Never finish a task with uncommitted changes.** Before reporting that work is complete, verify all changes are committed.
 - **Commit commands:**
   - **jj:** `jj commit -m "message"` (or `jj describe -m "message"` then `jj new` if amending the current change)
-  - **git:** `git add -A && git commit -m "message"`
+  - **git:** Stage specific files by name (`git add file1 file2`), then `git commit -m "message"`. Do NOT use `git add -A` or `git add .` — repos often have untracked files that should not be committed.
 - **Write meaningful commit messages.** Format: `<what changed>: <why>` — e.g., `add input validation: prevent crash on empty config`
 
 ### Plan Review Loop
