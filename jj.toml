@@ -9,8 +9,10 @@ pager = ["less", "-FRXi"]
 name = "Rob Hoelz"
 email = "rob@hoelz.ro"
 
-[colors."diff token"]
-underline = false
+[colors]
+"diff token" = { underline = false }
+elided       = "ansi-color-247"
+rest         = "ansi-color-247"
 
 [templates]
 draft_commit_description = '''
