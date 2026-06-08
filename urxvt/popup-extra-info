@@ -3,6 +3,7 @@
 use feature qw(say);
 use experimental qw(signatures);
 
+use List::Util qw(sum);
 use POSIX qw(strftime);
 
 my @SUFFIXES = (
@@ -12,6 +13,8 @@ my @SUFFIXES = (
     [K  => 1],
     ['' => 0],
 );
+
+my $ULID_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
 
 sub format_bytes($bytes) {
     for my $suffix_tuple (@SUFFIXES) {
@@ -25,6 +28,17 @@ sub format_bytes($bytes) {
 
     return $bytes;
 }
+
+sub ulid_to_timestamp {
+    my ( $ulid ) = @_;
+
+    my $encoded_ts = substr($ulid, 0, 10);
+    my @pieces = $encoded_ts =~ /(.)/g;
+    my $exp = 0;
+    my @digits = map { (1 << (5 * $exp++)) * index($ULID_ALPHABET, $_) } reverse(@pieces);
+    return sum(@digits);
+}
+
 
 sub on_start($self) {
     push @{ $self->{'term'}{'selection_popup_hook'} }, sub ($popup) {
@@ -42,6 +56,10 @@ sub on_start($self) {
 
         if(/^\d+$/) {
             $popup->add_title(format_bytes($_));
+        }
+
+        if(/01[JK][0-9A-HJKMNP-TV-Z]{23}/) {
+            $popup->add_title(strftime('%Y-%m-%d %H:%M:%S %z', localtime(ulid_to_timestamp($_) / 1000)));
         }
 
         if(m{\n}) {
