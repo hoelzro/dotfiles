@@ -40,7 +40,18 @@
 - **Commit commands:**
   - **jj:** `jj commit -m "message"` (or `jj describe -m "message"` then `jj new` if amending the current change)
   - **git:** Stage specific files by name (`git add file1 file2`), then `git commit -m "message"`. Do NOT use `git add -A` or `git add .` — repos often have untracked files that should not be committed.
-- **Write meaningful commit messages.** Format: `<what changed>: <why>` — e.g., `add input validation: prevent crash on empty config`
+- **Write meaningful commit messages.** Subject line: short imperative phrase (`add input validation`). Put the "why" in the commit body, separated by a blank line. Always include a `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>` trailer. Use a heredoc to preserve formatting:
+  ```
+  jj commit -m "$(cat <<'EOF'
+  short subject
+
+  explanation of why
+
+  Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+  EOF
+  )"
+  ```
+- **Advance the feature bookmark after every jj commit.** If a feature bookmark exists for the current work, run `jj b s <bookmark-name> -r @-` immediately after each commit.
 
 ### Plan Review Loop
 
