@@ -22,7 +22,7 @@ urxvt*urgentOnBell:      true
 urxvt*keysym.S-Up: scroll_to_prompt:scroll_up
 urxvt*keysym.S-Down: scroll_to_prompt:scroll_down
 
-urxvt*keysym.S-Return: string:\033\015
+urxvt*keysym.S-Return: string:\033[13;2u
 
 ! Reds
 urxvt*color1: #ff6f6f
